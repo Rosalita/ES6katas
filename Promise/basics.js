@@ -4,13 +4,34 @@
 describe('a Promise represents an operation that hasn`t completed yet, but is expected in the future', function() {
 
   it('`Promise` is a global function', function() {
-    const expectedType = '???';
+
+    // check what the type of a promise is
+    //  window.alert(typeof Promise); // function
+    const expectedType = 'function';
+
     assert.equal(typeof Promise, expectedType);
   });
 
   describe('the constructor', function() {
 
     it('instantiating it without params throws', function() {
+      // Functional instantiation first creates a function then inside the function an empty object is created
+
+      // Arrow functions in ES6
+      // function myfunc(params){return params + 2;}
+      // is the same as
+      // var myfunc = (params) => params + 2
+      // arrow syntax is  (parameters) => { statements }
+      // if there are no parameters an arrow function can be expressed as
+      // () => { statments }
+      // When there is only one parameter, the openin parenthesis are optional
+      // parameters =>  { statements }
+      // if a function is returning an expression, remove the brackets
+      // like
+      // function (parameters){ return expression;}
+      // is equivalent to:
+      // parameters => expression
+
       const fn = () => { Promise }
       assert.throws(fn);
     });
