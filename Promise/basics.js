@@ -32,12 +32,13 @@ describe('a Promise represents an operation that hasn`t completed yet, but is ex
       // is equivalent to:
       // parameters => expression
 
-      const fn = () => { Promise }
-      assert.throws(fn);
+      const fn = () => { new Promise }
+      assert.throws(fn); // assert.throws expects a block to throw an error.
     });
 
     it('expects a function as parameter', function() {
       const param = null;
+      // assert.doesNotThrow expects a block to not throw an error
       assert.doesNotThrow(() => { new Promise(param); });
     });
 
