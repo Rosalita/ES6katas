@@ -69,7 +69,7 @@ describe('class creation', () => {
   it('multiple methods need no commas (opposed to object notation)', function() {
     class User {
       wroteATest() { this.everWroteATest = true; }
-      isLazy() {  }
+      isLazy() { return !this.everWroteATest; }
     }
 
     const tester = new User();
@@ -79,7 +79,7 @@ describe('class creation', () => {
   });
 
   it('anonymous class', () => {
-    const classType = typeof {};
+    const classType = typeof class{};
     assert.equal(classType, 'function');
   });
 
