@@ -23,7 +23,7 @@ describe('a Promise represents an operation that hasn`t completed yet, but is ex
       // var myfunc = (params) => params + 2
       // arrow syntax is  (parameters) => { statements }
       // if there are no parameters an arrow function can be expressed as
-      // () => { statments }
+      // () => { statements }
       // When there is only one parameter, the openin parenthesis are optional
       // parameters =>  { statements }
       // if a function is returning an expression, remove the brackets
@@ -32,12 +32,12 @@ describe('a Promise represents an operation that hasn`t completed yet, but is ex
       // is equivalent to:
       // parameters => expression
 
-      const fn = () => { new Promise }
+      const fn = () => { new Promise() } // invoking a constructor with new requires () on the constructor
       assert.throws(fn); // assert.throws expects a block to throw an error.
     });
 
     it('expects a function as parameter', function() {
-      const param = null;
+      const param = () => {}; // param is now an empty function
       // assert.doesNotThrow expects a block to not throw an error
       assert.doesNotThrow(() => { new Promise(param); });
     });
