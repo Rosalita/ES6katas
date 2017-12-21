@@ -3,6 +3,8 @@
 
 describe('inside a class you can use the `static` keyword', () => {
 
+
+
   describe('for methods', () => {
 
     class IntegrationTest {}
@@ -10,14 +12,17 @@ describe('inside a class you can use the `static` keyword', () => {
 
     it('a static method just has the prefix `static`', () => {
       class TestFactory {
-        makeTest() { return new UnitTest(); }
+        // the static keyword defines a static method for a class
+        // static method calls are made directly on the class and are not clalable on instances of the class
+        // static methods are often used to create utility functions
+        static makeTest() { return new UnitTest(); }
       }
 
       assert.ok(TestFactory.makeTest() instanceof UnitTest);
     });
 
     it('the method name can be dynamic/computed at runtime', () => {
-      const methodName = 'makeTest';
+      const methodName = 'createTest';
       class TestFactory {
         static [methodName]() { return new UnitTest(); }
       }
