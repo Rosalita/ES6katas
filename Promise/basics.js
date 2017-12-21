@@ -3,6 +3,17 @@
 
 describe('a Promise represents an operation that hasn`t completed yet, but is expected in the future', function() {
 
+// The Promise object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value.
+// Syntax of promises
+// new Promise ( /* executor */ function(resolve, reject) {...});
+// executor is a function that is passed with the arguments resolve and reject.
+// the function is executed immediately by the Promise implementation, passing resolve and reject functions.
+// when called the resolve and reject functions resolve or reject the promise.
+// the executor normally initiates some asynchronous work and once that completes
+// either calls the resolve function to resolve the promise
+// or else rejects if an error occured
+// if an error is thrown in the executor function, the promise is rejected and the return value of the executor ignored
+
   it('`Promise` is a global function', function() {
 
     // check what the type of a promise is
@@ -46,8 +57,11 @@ describe('a Promise represents an operation that hasn`t completed yet, but is ex
 
   describe('simplest promises', function() {
 
+
     it('resolve a promise by calling the `resolve` function given as first parameter', function(done) {
+      // The Promise.resolve(value) method returns a Promise object that is resolved with the given value
       let promise = new Promise((resolve) => {
+        resolve();
       });
 
       promise
@@ -57,7 +71,7 @@ describe('a Promise represents an operation that hasn`t completed yet, but is ex
 
     it('the `resolve` function can return a value, that is consumed by the `promise.then()` callback', function(done) {
       let promise = new Promise((resolve) => {
-        resolve();
+        resolve(42); // test expects promise to resolve with 42 so put 42 in resolve
       });
 
       promise
@@ -66,7 +80,8 @@ describe('a Promise represents an operation that hasn`t completed yet, but is ex
     });
 
     it('rejecting a promise is done by calling the callback given as 2nd parameter', function(done) {
-      let promise = new Promise(() => {
+      let promise = new Promise((resolve, reject) => {
+        reject();
       });
 
       promise
@@ -79,7 +94,7 @@ describe('a Promise represents an operation that hasn`t completed yet, but is ex
   describe('an asynchronous promise', function() {
 
     it('can resolve later, also by calling the first callback', function(done) {
-      let promise = new Promise(() => {
+      let promise = new Promise((resolve, reject) => {
         setTimeout(() => resolve(), 100);
       });
 
@@ -89,7 +104,7 @@ describe('a Promise represents an operation that hasn`t completed yet, but is ex
     });
 
     it('reject it at some later point in time, calling the 2nd callback', function(done) {
-      let promise = new Promise((reject) => {
+      let promise = new Promise((resolve, reject) => {
         setTimeout(() => reject(), 100);
       });
 
